@@ -7,21 +7,16 @@ class FriendsService {
     _repo = Repo();
   }
 
-  saveFriends(Friends friends) async {
+  saveFriends(Login login) async {
     //  print(todo);
-    return await _repo.insertData('Friends', friends.toJson());
+    return await _repo.insertData('Friends', login.toJson());
   }
 
   readAllFriends() async {
     return await _repo.readData('Friends');
   }
 
-
-  updateFriends(Friends friends) async {
-    return await _repo.updateData('Friends', friends.toJson());
-}
-
-
-
-  
+  updateFriends(Login login) async {
+    return await _repo.updateData('Friends', login.toJson());
+  }
 }

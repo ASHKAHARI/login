@@ -8,13 +8,13 @@ class DatabaseConnection{
   {
     var directory= await getExternalStorageDirectory();
     
-    var path=join(directory?.path ?? '','db_friends');
+    var path=join(directory?.path ?? '','db_login');
     
     var database= await openDatabase(path,version: 1,onCreate: _createDatabase);
     return database;
   }
   Future<void> _createDatabase(Database database,int version ) async{
-   String sql="CREATE TABLE friends (id INTEGER PRIMARY KEY,name TEXT,dob TEXT, mobileNo TEXT, category TEXT, profilePicture TEXT);";
+   String sql="CREATE TABLE friends (id INTEGER PRIMARY KEY,email TEXT,password TEXT);";
    await database.execute(sql);
   }
 }

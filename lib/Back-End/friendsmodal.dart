@@ -1,44 +1,29 @@
 import 'dart:convert';
 
-import 'package:flutter/material.dart';
+Login loginFromJson(String str) => Login.fromJson(json.decode(str));
 
-Friends friendsFromJson(String str) => Friends.fromJson(json.decode(str));
+String loginToJson(Login data) => json.encode(data.toJson());
 
-String friendsToJson(Friends data) => json.encode(data.toJson());
-
-class Friends {
-  Friends(
+class Login {
+  Login(
       {this.id,
-      this.name,
-      this.mobileNo,
-      this.dob,
-      this.category,
-      this.profilePicture,
-      this.iconColor = Colors.cyan});
+      this.email,
+     this.password});
 
   int? id;
-  String? name;
-  Color? iconColor;
-  String? mobileNo;
-  String? dob;
-  String? category;
-  String? profilePicture;
+  String? email;
+  String? password;
+ 
 
-  factory Friends.fromJson(Map<String, dynamic> json) => Friends(
+  factory Login.fromJson(Map<String, dynamic> json) => Login(
         id: json["id"],
-        name: json["name"],
-        dob: json["dob"],
-        mobileNo: json["mobileNo"],
-        category: json["category"],
-        profilePicture: json["profilePicture"],
+        email: json["email"],
+        password: json["password"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": name,
-        "dob": dob,
-        "mobileNo": mobileNo,
-        "category": category,
-        "profilePicture":profilePicture,
+        "name": email,
+       "password":password,
       };
 }
