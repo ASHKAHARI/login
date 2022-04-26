@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/Back-End/login_service.dart';
 import 'package:login_app/screens/signup_screen.dart';
-import 'Back-End/loginmodal.dart';
 
 void main() => runApp(const MyApp());
 
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
- 
+
 class LoginApp extends StatefulWidget {
   const LoginApp({Key? key}) : super(key: key);
 
@@ -34,20 +32,6 @@ class LoginState extends State<LoginApp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  LoginService loginService = LoginService();
-
-  saveDataToDb() {
-    Login friend = Login();
-    friend.email = nameController.text;
-    friend.password = passwordController.text;
-    loginService.saveUser(friend);
-    clear();
-  }
-
-  clear() {
-    nameController.text = "";
-    passwordController.text = "";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,14 +114,11 @@ class LoginState extends State<LoginApp> {
                       style: TextStyle(fontSize: 20),
                     ),
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
-                        saveDataToDb();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const SignUp()),
-                        );
-                      }
+                      if (_formKey.currentState!.validate()) {}
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUp()),
+                      );
                     },
                   )
                 ],
