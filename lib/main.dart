@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:login_app/Back-End/friends_service.dart';
+import 'package:login_app/Back-End/login_service.dart';
 import 'package:login_app/screens/signup_screen.dart';
-import 'Back-End/friendsmodal.dart';
+import 'Back-End/loginmodal.dart';
 
 void main() => runApp(const MyApp());
 
@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
+ 
 class LoginApp extends StatefulWidget {
   const LoginApp({Key? key}) : super(key: key);
 
@@ -133,11 +133,11 @@ class LoginState extends State<LoginApp> {
                       if (_formKey.currentState!.validate()) {
                         saveDataToDb();
                         Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const SignUp()),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignUp()),
+                        );
                       }
-                      
                     },
                   )
                 ],
