@@ -23,7 +23,7 @@ class Login {
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "name": email,
+        "email": email,
        "password":password,
       };
 }

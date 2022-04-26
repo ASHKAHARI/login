@@ -1,22 +1,22 @@
 import 'package:login_app/Back-End/repo.dart';
 import 'friendsmodal.dart';
 
-class FriendsService {
+class LoginService {
   late Repo _repo;
-  FriendsService() {
+  LoginService() {
     _repo = Repo();
   }
 
-  saveFriends(Login login) async {
+  saveUser(Login login) async {
     //  print(todo);
-    return await _repo.insertData('Friends', login.toJson());
+    return await _repo.insertData('User', login.toJson());
   }
 
   readAllFriends() async {
-    return await _repo.readData('Friends');
+    return await _repo.readData('User');
   }
 
   updateFriends(Login login) async {
-    return await _repo.updateData('Friends', login.toJson());
+    return await _repo.updateData('User', login.toJson());
   }
 }
