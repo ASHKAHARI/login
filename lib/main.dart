@@ -1,4 +1,9 @@
+import 'dart:ffi';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:login_app/Back-End/login_service.dart';
+import 'package:login_app/Back-End/loginmodal.dart';
 import 'package:login_app/screens/signup_screen.dart';
 
 void main() => runApp(const MyApp());
@@ -32,6 +37,30 @@ class LoginState extends State<LoginApp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+
+  List family = [];
+  // Color iconColor = Colors.lightBlue;
+
+  @override
+  void initState() {
+    getAllData();
+    super.initState();
+  }
+
+  getAllData() async {
+    var value = await LoginService().readAllFriends();
+
+    family = <Login>[];
+
+    family = value.map((value) => Login.fromJson(value)).toList();
+
+    setState(() {});
+  }
+
+   clear() {
+    nameController.text = "";
+    passwordController.text = "";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +112,7 @@ class LoginState extends State<LoginApp> {
                     if (value == null || value.isEmpty) {
                       return 'Password is Required ';
                     }
+
                     return null;
                   },
                   decoration: const InputDecoration(
@@ -103,7 +133,23 @@ class LoginState extends State<LoginApp> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ElevatedButton(
                     child: const Text('Login'),
-                    onPressed: () {},
+                    onPressed: () {
+                      getAllData();
+                      family.forEach((element) {
+                        if (element.email == nameController.text &&
+                            element.password == passwordController.text) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('You Logged in Successfully')),
+                          );
+                        }
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Invalid Credentials')),
+                        );
+                      });
+                      // clear();
+                    },
+                    
                   )),
               Row(
                 children: <Widget>[
@@ -128,4 +174,10 @@ class LoginState extends State<LoginApp> {
           )),
     );
   }
+
+  // checkCredentials() {
+  //   family.forEach((element) {
+  //     element.name;
+  //   });
+  // }
 }

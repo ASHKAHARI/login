@@ -16,6 +16,7 @@ class LoginService {
     return await _repo.readData('User');
   }
 
+
   updateFriends(Login login) async {
     return await _repo.updateData('User', login.toJson());
   }

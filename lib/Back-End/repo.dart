@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'db_connection.dart';
-
+import 'loginmodal.dart';
 
 class Repo {
   late DatabaseConnection _databaseConnection;
@@ -27,15 +27,19 @@ class Repo {
     var connection = await database;
     return await connection?.query(table);
   }
-// deleteData(table,todoId) async{
-//   var connection=await database;
-//   return await connection?.rawDelete("delete from $table where id=$todoId");
 
-// }
+  readUser(String email, String password) async {
+    var connection = await database;
+    return await connection?.rawQuery(
+        "SELECT * FROM user WHERE email = '$email' and password = '$password'");
+  }
+
+  
+
   updateData(table, data) async {
     var connection = await database;
     // return await connection?.update(table, data);
-    return await connection?.rawUpdate('UPDATE $table  WHERE id = ?',
-    data['id']);
+    return await connection?.rawUpdate(
+        'UPDATE $table  WHERE id = ?', data['id']);
   }
- }
+}
