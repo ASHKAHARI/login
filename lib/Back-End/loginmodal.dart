@@ -9,6 +9,7 @@ class Login {
       {this.id,
       this.email,
       this.name,
+      this.profilePhoto,
      this.password,
      this.confirmPassword
      });
@@ -16,6 +17,7 @@ class Login {
   int? id;
   String? email;
   String? name;
+  String? profilePhoto;
   String? password;
   String? confirmPassword;
  
@@ -24,6 +26,7 @@ class Login {
         id: json["id"],
         email: json["email"],
         name: json["email"],
+        profilePhoto: json["profilePhoto"],
         password: json["password"],
         confirmPassword: json["password"],
       );
@@ -32,6 +35,7 @@ class Login {
         "id": id,
         "email": email,
         "name": name,
+        "profilePhoto": profilePhoto,
        "password":password,
        "confirmPassword":confirmPassword,
       };
