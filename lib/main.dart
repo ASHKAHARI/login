@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:login_app/Back-End/login_service.dart';
 import 'package:login_app/Back-End/loginmodal.dart';
@@ -134,21 +131,38 @@ class LoginState extends State<LoginApp> {
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                   child: ElevatedButton(
                     child: const Text('Login'),
-                    onPressed: () {
-                      getAllData();
-                      family.forEach((element) {
-                        if (element.email == nameController.text &&
-                            element.password == passwordController.text) {
-                          Navigator.push(context,
+                    onPressed: () async {
+                      // getAllData();
+                      // family.forEach((element) {
+                      //   if (element.email == nameController.text &&
+                      //       element.password == passwordController.text) {
+                      //     Navigator.push(context,
+                      //       MaterialPageRoute(
+                      //           builder: (context) => const LoginScreen()),
+                      //     );
+                      //   }
+                      //   ScaffoldMessenger.of(context).showSnackBar(
+                      //     const SnackBar(content: Text('Invalid Credentials')),
+                      //   );
+                      // }
+                      // );
+                      // clear();
+                      if (_formKey.currentState!.validate()) {
+                        var value = await LoginService().checkValidUser(
+                            nameController.text, passwordController.text);
+                        if (value.length > 0) {
+                          Navigator.push(
+                            context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
+                                builder: (context) =>  LoginScreen(data: value[0].name)),
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('Invalid Credentials')),
                           );
                         }
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(content: Text('Invalid Credentials')),
-                        );
-                      });
-                      // clear();
+                      }
                     },
                   )),
               Row(
