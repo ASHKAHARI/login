@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:login_app/Back-End/login_service.dart';
 import 'package:login_app/Back-End/loginmodal.dart';
+import 'package:login_app/screens/login_screen.dart';
 import 'package:login_app/screens/signup_screen.dart';
 
 void main() => runApp(const MyApp());
@@ -57,7 +58,7 @@ class LoginState extends State<LoginApp> {
     setState(() {});
   }
 
-   clear() {
+  clear() {
     nameController.text = "";
     passwordController.text = "";
   }
@@ -138,9 +139,9 @@ class LoginState extends State<LoginApp> {
                       family.forEach((element) {
                         if (element.email == nameController.text &&
                             element.password == passwordController.text) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('You Logged in Successfully')),
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()),
                           );
                         }
                         ScaffoldMessenger.of(context).showSnackBar(
@@ -149,7 +150,6 @@ class LoginState extends State<LoginApp> {
                       });
                       // clear();
                     },
-                    
                   )),
               Row(
                 children: <Widget>[
