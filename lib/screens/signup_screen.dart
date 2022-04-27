@@ -20,12 +20,13 @@ class SignUpState extends State<SignUp> {
   final ImagePicker _picker = ImagePicker();
   LoginService loginService = LoginService();
   String? imageFile;
-
   bool _passwordVisible = true;
+  bool _confirmPasswordVisible = true;
 
   @override
   void initState() {
     _passwordVisible = false;
+    _confirmPasswordVisible = false;
   }
 
   saveDataToDb() {
@@ -40,7 +41,9 @@ class SignUpState extends State<SignUp> {
 
   clear() {
     nameController.text = "";
+    emailController.text = "";
     passwordController.text = "";
+    confirmPasswordController.text = "";
   }
 
   @override
@@ -53,7 +56,6 @@ class SignUpState extends State<SignUp> {
             padding: const EdgeInsets.all(10),
             child: ListView(
               children: <Widget>[
-               
                 Center(
                     child: imageFile == "" || imageFile == null
                         ? CircleAvatar(
@@ -151,9 +153,9 @@ class SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
-                      controller: passwordController,
+                      controller: confirmPasswordController,
                       obscureText:
-                          !_passwordVisible, //This will obscure text dynamically
+                          !_confirmPasswordVisible, //This will obscure text dynamically
                       decoration: InputDecoration(
                         labelText: 'Confirm Password',
                         hintText: 'Confirm your password',
@@ -162,7 +164,7 @@ class SignUpState extends State<SignUp> {
                         suffixIcon: IconButton(
                           icon: Icon(
                             // Based on passwordVisible state choose the icon
-                            _passwordVisible
+                            _confirmPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: Theme.of(context).primaryColorDark,
@@ -170,7 +172,8 @@ class SignUpState extends State<SignUp> {
                           onPressed: () {
                             // Update the state i.e. toogle the state of passwordVisible variable
                             setState(() {
-                              _passwordVisible = !_passwordVisible;
+                              _confirmPasswordVisible =
+                                  !_confirmPasswordVisible;
                             });
                           },
                         ),
@@ -196,7 +199,7 @@ class SignUpState extends State<SignUp> {
                     height: 50,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ElevatedButton(
-                      child: const Text('SignUp'),
+                      child: const Text('Sign Up'),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           saveDataToDb();
