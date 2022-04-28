@@ -23,6 +23,8 @@ class SignUpState extends State<SignUp> {
   bool _passwordVisible = true;
   bool _confirmPasswordVisible = true;
 
+  // var email = emailController.text;
+
   @override
   void initState() {
     _passwordVisible = false;
@@ -105,6 +107,12 @@ class SignUpState extends State<SignUp> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'Email is Required';
+                      }
+                      bool emailValid = RegExp(
+                              r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                          .hasMatch(value);
+                      if (!emailValid) {
+                        return "Check your email";
                       }
                       return null;
                     },

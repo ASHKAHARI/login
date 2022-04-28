@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/Back-End/login_service.dart';
-import 'package:login_app/Back-End/loginmodal.dart';
 import 'package:login_app/screens/login_screen.dart';
 import 'package:login_app/screens/signup_screen.dart';
 
@@ -35,25 +34,7 @@ class LoginState extends State<LoginApp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-  List family = [];
-  // Color iconColor = Colors.lightBlue;
-
-  @override
-  void initState() {
-    getAllData();
-    super.initState();
-  }
-
-  getAllData() async {
-    var value = await LoginService().readAllFriends();
-
-    family = <Login>[];
-
-    family = value.map((value) => Login.fromJson(value)).toList();
-
-    setState(() {});
-  }
+  
 
   clear() {
     nameController.text = "";
@@ -132,36 +113,23 @@ class LoginState extends State<LoginApp> {
                   child: ElevatedButton(
                     child: const Text('Login'),
                     onPressed: () async {
-                      // getAllData();
-                      // family.forEach((element) {
-                      //   if (element.email == nameController.text &&
-                      //       element.password == passwordController.text) {
-                      //     Navigator.push(context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => const LoginScreen()),
-                      //     );
-                      //   }
-                      //   ScaffoldMessenger.of(context).showSnackBar(
-                      //     const SnackBar(content: Text('Invalid Credentials')),
-                      //   );
-                      // }
-                      // );
-                      // clear();
                       if (_formKey.currentState!.validate()) {
                         var value = await LoginService().checkValidUser(
                             nameController.text, passwordController.text);
+
                         if (value.length > 0) {
                           Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>  LoginScreen(data: value[0].name)),
-                          );
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      LoginScreen(data: value[0])));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                                 content: Text('Invalid Credentials')),
                           );
                         }
+                        clear();
                       }
                     },
                   )),
