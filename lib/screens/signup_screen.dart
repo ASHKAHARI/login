@@ -23,7 +23,7 @@ class SignUpState extends State<SignUp> {
   bool _passwordVisible = true;
   bool _confirmPasswordVisible = true;
 
-  // var email = emailController.text;
+  var confirmPass;
 
   @override
   void initState() {
@@ -148,12 +148,13 @@ class SignUpState extends State<SignUp> {
                         ),
                       ),
                       validator: (value) {
+                        confirmPass = value;
                         if (value == null || value.isEmpty) {
                           return 'Password is Required ';
-                        }
-                        if (value.length < 6) {
+                        } else if (value.length < 6) {
                           return 'password too short';
-                        }
+                        } 
+
                         return null;
                       },
                     )),
@@ -192,7 +193,10 @@ class SignUpState extends State<SignUp> {
                         }
                         if (value.length < 6) {
                           return 'password too short';
+                        } else if (value != confirmPass) {
+                          return 'Password must be same as above';
                         }
+                        
                         return null;
                       },
                     )),
