@@ -1,6 +1,8 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:login_app/main.dart';
+import 'package:login_app/screens/login_screen.dart';
 import '../Back-End/login_service.dart';
 import '../Back-End/loginmodal.dart';
 
@@ -153,7 +155,7 @@ class SignUpState extends State<SignUp> {
                           return 'Password is Required ';
                         } else if (value.length < 6) {
                           return 'password too short';
-                        } 
+                        }
 
                         return null;
                       },
@@ -196,7 +198,7 @@ class SignUpState extends State<SignUp> {
                         } else if (value != confirmPass) {
                           return 'Password must be same as above';
                         }
-                        
+
                         return null;
                       },
                     )),

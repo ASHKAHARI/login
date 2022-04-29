@@ -34,7 +34,6 @@ class LoginState extends State<LoginApp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  
 
   clear() {
     nameController.text = "";
