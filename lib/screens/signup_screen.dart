@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:login_app/main.dart';
-import 'package:login_app/screens/login_screen.dart';
 import '../Back-End/login_service.dart';
 import '../Back-End/loginmodal.dart';
+import '../main.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -71,7 +70,7 @@ class SignUpState extends State<SignUp> {
                             ),
                             radius: 80, // Image radius
                             backgroundImage:
-                                const AssetImage('assets/images/wick.jpg'))
+                                const AssetImage('assets/images/default.jpg'))
                         : CircleAvatar(
                             child: FloatingActionButton(
                               child: const Icon(Icons.camera_alt),
@@ -120,14 +119,12 @@ class SignUpState extends State<SignUp> {
                     },
                   ),
                 ),
-
                 Container(
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: passwordController,
-                      obscureText:
-                          !_passwordVisible, //This will obscure text dynamically
+                      obscureText: !_passwordVisible,
                       decoration: InputDecoration(
                         labelText: 'Password',
                         hintText: 'Enter your password',
@@ -135,14 +132,12 @@ class SignUpState extends State<SignUp> {
                         // Here is key idea
                         suffixIcon: IconButton(
                           icon: Icon(
-                            // Based on passwordVisible state choose the icon
                             _passwordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: Theme.of(context).primaryColorDark,
                           ),
                           onPressed: () {
-                            // Update the state i.e. toogle the state of passwordVisible variable
                             setState(() {
                               _passwordVisible = !_passwordVisible;
                             });
@@ -202,12 +197,6 @@ class SignUpState extends State<SignUp> {
                         return null;
                       },
                     )),
-                // TextButton(
-                //   onPressed: () {
-                //     //forgot password screen
-                //   },
-                //   child: const Text('Forgot Password',),
-                // ),
                 const SizedBox(height: 25),
                 Container(
                     height: 50,
@@ -224,6 +213,26 @@ class SignUpState extends State<SignUp> {
                         }
                       },
                     )),
+                Row(
+                  children: <Widget>[
+                    const Text('Already have a account?'),
+                    TextButton(
+                      child: const Text(
+                        'Login',
+                        style: TextStyle(fontSize: 20),
+                      ),
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {}
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginApp()),
+                        );
+                      },
+                    )
+                  ],
+                  mainAxisAlignment: MainAxisAlignment.center,
+                ),
               ],
             )),
       ),

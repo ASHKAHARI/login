@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/Back-End/login_service.dart';
-import 'package:login_app/screens/login_screen.dart';
-import 'package:login_app/screens/signup_screen.dart';
+import 'package:login_app/screens/Logged_details_screen.dart';
+import 'package:login_app/screens/signUp_screen.dart';
 
-void main() => runApp(const MyApp());
+void main() => runApp(const LoginApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class LoginApp extends StatelessWidget {
+  const LoginApp({Key? key}) : super(key: key);
 
   static const String _title = 'Login App';
 
@@ -17,26 +17,26 @@ class MyApp extends StatelessWidget {
       title: _title,
       home: Scaffold(
         appBar: AppBar(title: const Text(_title)),
-        body: const LoginApp(),
+        body: const LoginScreen(),
       ),
     );
   }
 }
 
-class LoginApp extends StatefulWidget {
-  const LoginApp({Key? key}) : super(key: key);
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginApp> createState() => LoginState();
+  State<LoginScreen> createState() => LoginState();
 }
 
-class LoginState extends State<LoginApp> {
-  TextEditingController nameController = TextEditingController();
+class LoginState extends State<LoginScreen> {
+  TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
   clear() {
-    nameController.text = "";
+    emailController.text = "";
     passwordController.text = "";
   }
 
@@ -58,17 +58,10 @@ class LoginState extends State<LoginApp> {
                         fontWeight: FontWeight.w500,
                         fontSize: 30),
                   )),
-              // Container(
-              //     alignment: Alignment.center,
-              //     padding: const EdgeInsets.all(10),
-              //     child: const Text(
-              //       'Sign in',
-              //       style: TextStyle(fontSize: 20),
-              //     )),
               Container(
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
-                  controller: nameController,
+                  controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: 'User Email',
@@ -99,12 +92,6 @@ class LoginState extends State<LoginApp> {
                   ),
                 ),
               ),
-              // TextButton(
-              //   onPressed: () {
-              //     //forgot password screen
-              //   },
-              //   child: const Text('Forgot Password',),
-              // ),
               const SizedBox(height: 45),
               Container(
                   height: 50,
@@ -114,14 +101,14 @@ class LoginState extends State<LoginApp> {
                     onPressed: () async {
                       if (_formKey.currentState!.validate()) {
                         var value = await LoginService().checkValidUser(
-                            nameController.text, passwordController.text);
+                            emailController.text, passwordController.text);
 
                         if (value.length > 0) {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      LoginScreen(data: value[0])));
+                                      LoggedDetailsScreen(data: value[0])));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
@@ -155,10 +142,4 @@ class LoginState extends State<LoginApp> {
           )),
     );
   }
-
-  // checkCredentials() {
-  //   family.forEach((element) {
-  //     element.name;
-  //   });
-  // }
 }
