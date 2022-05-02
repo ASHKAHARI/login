@@ -36,10 +36,5 @@ class Repo {
 
   
 
-  updateData(table, data) async {
-    var connection = await database;
-    // return await connection?.update(table, data);
-    return await connection?.rawUpdate(
-        'UPDATE $table  WHERE id = ?', data['id']);
-  }
+ 
 }

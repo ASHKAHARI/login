@@ -78,26 +78,38 @@ class SignUpState extends State<SignUp> {
               children: <Widget>[
                 Center(
                     child: imageFile == "" || imageFile == null
-                        ? CircleAvatar(
-                            child: FloatingActionButton(
-                              child: const Icon(Icons.camera_alt),
-                              onPressed: () {
-                                getFromGallery();
-                              },
-                            ),
-                            radius: 80, // Image radius
-                            backgroundImage:
-                                const AssetImage('assets/images/default.jpg'))
-                        : CircleAvatar(
-                            child: FloatingActionButton(
-                              child: const Icon(Icons.camera_alt),
-                              onPressed: () {
-                                getFromGallery();
-                              },
-                            ),
-                            radius: 80, // Image radius
-                            backgroundImage:
-                                FileImage(File(imageFile.toString())))),
+                        ? GestureDetector(
+                            onTap: () {
+                              getFromGallery();
+                            },
+                            child: const CircleAvatar(
+
+                                // child: FloatingActionButton(
+                                //   backgroundColor: Colors.transparent,
+                                //   child: const Icon(Icons.camera_alt),
+                                //   onPressed: () {
+                                //     getFromGallery();
+                                //   },
+                                // ),
+                                radius: 80, // Image radius
+                                backgroundImage:
+                                    AssetImage('assets/images/default.jpg')),
+                          )
+                        : GestureDetector(
+                            onTap: () {
+                              getFromGallery();
+                            },
+                            child: CircleAvatar(
+                                // child: FloatingActionButton(
+                                //   child: const Icon(Icons.camera_alt),
+                                //   onPressed: () {
+                                //     getFromGallery();
+                                //   },
+                                // ),
+                                radius: 80, // Image radius
+                                backgroundImage:
+                                    FileImage(File(imageFile.toString()))),
+                          )),
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
@@ -233,7 +245,7 @@ class SignUpState extends State<SignUp> {
                             const SnackBar(
                                 content: Text('You Signed in Successfully')),
                           );
-                          Navigator.push(
+                          Navigator.pop(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => const LoginApp()),

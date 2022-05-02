@@ -8,7 +8,7 @@ class LoginService {
   }
 
   saveUser(Login login) async {
-    //  print(todo);
+    
     return await _repo.insertData('User', login.toJson());
   }
 
@@ -17,10 +17,6 @@ class LoginService {
   }
 
   checkValidUser(name, password) async {
-    return await _repo.readUser(name,password);
-  }
-
-  updateFriends(Login login) async {
-    return await _repo.updateData('User', login.toJson());
+    return await _repo.readUser(name, password);
   }
 }
