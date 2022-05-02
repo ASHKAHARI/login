@@ -12,7 +12,7 @@ class LoginService {
     return await _repo.insertData('User', login.toJson());
   }
 
-  readAllFriends() async {
+  readAllDetails() async {
     return await _repo.readData('User');
   }
 

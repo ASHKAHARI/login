@@ -24,13 +24,30 @@ class SignUpState extends State<SignUp> {
   bool _passwordVisible = true;
   bool _confirmPasswordVisible = true;
 
+  // ignore: prefer_typing_uninitialized_variables
   var confirmPass;
+  List email = [];
 
   @override
   void initState() {
+    getAllEmail();
     _passwordVisible = false;
     _confirmPasswordVisible = false;
+    super.initState();
   }
+
+  getAllEmail() async {
+    var value = await LoginService().readAllDetails();
+    email = <Login>[];
+    email = value.map((value) => Login.fromJson(value)).toList();
+    setState(() {});
+  }
+
+  // @override
+  // void initState() {
+  //   _passwordVisible = false;
+  //   _confirmPasswordVisible = false;
+  // }
 
   saveDataToDb() {
     Login friend = Login();
@@ -52,7 +69,7 @@ class SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(automaticallyImplyLeading: false),
       body: Form(
         key: _formKey,
         child: Padding(
@@ -114,6 +131,11 @@ class SignUpState extends State<SignUp> {
                           .hasMatch(value);
                       if (!emailValid) {
                         return "Check your email";
+                      }
+                      for (var element in email) {
+                        if (element.email == emailController.text) {
+                          return 'Email has already taken';
+                        }
                       }
                       return null;
                     },
