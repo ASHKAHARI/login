@@ -255,7 +255,7 @@ class SignUpState extends State<SignUp> {
                     )),
                 Row(
                   children: <Widget>[
-                    const Text('Already have a account?'),
+                    const Text('Already have an account?'),
                     TextButton(
                       child: const Text(
                         'Login',

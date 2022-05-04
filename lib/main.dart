@@ -95,7 +95,7 @@ class LoginState extends State<LoginScreen> {
                   controller: emailController,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'User Email',
+                    labelText: 'Enter your  email',
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -119,7 +119,7 @@ class LoginState extends State<LoginScreen> {
                   },
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Password',
+                    labelText: 'Enter your password',
                   ),
                 ),
               ),
