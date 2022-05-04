@@ -43,12 +43,6 @@ class SignUpState extends State<SignUp> {
     setState(() {});
   }
 
-  // @override
-  // void initState() {
-  //   _passwordVisible = false;
-  //   _confirmPasswordVisible = false;
-  // }
-
   saveDataToDb() {
     Login friend = Login();
     friend.email = emailController.text;
@@ -83,15 +77,7 @@ class SignUpState extends State<SignUp> {
                               getFromGallery();
                             },
                             child: const CircleAvatar(
-
-                                // child: FloatingActionButton(
-                                //   backgroundColor: Colors.transparent,
-                                //   child: const Icon(Icons.camera_alt),
-                                //   onPressed: () {
-                                //     getFromGallery();
-                                //   },
-                                // ),
-                                radius: 80, // Image radius
+                                radius: 80,
                                 backgroundImage:
                                     AssetImage('assets/images/default.jpg')),
                           )
@@ -100,13 +86,7 @@ class SignUpState extends State<SignUp> {
                               getFromGallery();
                             },
                             child: CircleAvatar(
-                                // child: FloatingActionButton(
-                                //   child: const Icon(Icons.camera_alt),
-                                //   onPressed: () {
-                                //     getFromGallery();
-                                //   },
-                                // ),
-                                radius: 80, // Image radius
+                                radius: 80,
                                 backgroundImage:
                                     FileImage(File(imageFile.toString()))),
                           )),
@@ -163,7 +143,6 @@ class SignUpState extends State<SignUp> {
                         labelText: 'Password',
                         hintText: 'Enter your password',
                         border: const OutlineInputBorder(),
-                        // Here is key idea
                         suffixIcon: IconButton(
                           icon: Icon(
                             _passwordVisible
@@ -194,23 +173,19 @@ class SignUpState extends State<SignUp> {
                     child: TextFormField(
                       keyboardType: TextInputType.text,
                       controller: confirmPasswordController,
-                      obscureText:
-                          !_confirmPasswordVisible, //This will obscure text dynamically
+                      obscureText: !_confirmPasswordVisible,
                       decoration: InputDecoration(
                         labelText: 'Confirm Password',
                         hintText: 'Confirm your password',
                         border: const OutlineInputBorder(),
-                        // Here is key idea
                         suffixIcon: IconButton(
                           icon: Icon(
-                            // Based on passwordVisible state choose the icon
                             _confirmPasswordVisible
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: Theme.of(context).primaryColorDark,
                           ),
                           onPressed: () {
-                            // Update the state i.e. toogle the state of passwordVisible variable
                             setState(() {
                               _confirmPasswordVisible =
                                   !_confirmPasswordVisible;
