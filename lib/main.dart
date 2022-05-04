@@ -5,6 +5,9 @@ import 'package:login_app/screens/signUp_screen.dart';
 
 void main() => runApp(const LoginApp());
 
+final darkNotifier = ValueNotifier<bool>(false);
+bool isDark = darkNotifier.value;
+
 class LoginApp extends StatelessWidget {
   const LoginApp({Key? key}) : super(key: key);
 
@@ -12,14 +15,36 @@ class LoginApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: _title,
-      home: Scaffold(
-        appBar: AppBar(title: const Text(_title)),
-        body: const LoginScreen(),
-      ),
-    );
+    return ValueListenableBuilder<bool>(
+        valueListenable: darkNotifier,
+        builder: (BuildContext context, bool isDark, Widget? child) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: _title,
+            themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
+            theme: ThemeData(primaryColor: Colors.blue),
+            darkTheme: ThemeData.dark(),
+            home: Scaffold(
+              appBar: AppBar(
+                title: const Text(_title),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      isDark = !isDark;
+                      darkNotifier.value = isDark;
+                    },
+                    child: CircleAvatar(
+                      backgroundColor: Colors.lightBlueAccent,
+                      child: Icon(
+                          isDark ? Icons.wb_sunny_outlined : Icons.bubble_chart),
+                    ),
+                  )
+                ],
+              ),
+              body: const LoginScreen(),
+            ),
+          );
+        });
   }
 }
 
@@ -38,6 +63,12 @@ class LoginState extends State<LoginScreen> {
   clear() {
     emailController.text = "";
     passwordController.text = "";
+  }
+
+  @override
+  void dispose() {
+    darkNotifier.dispose();
+    super.dispose();
   }
 
   @override
@@ -134,7 +165,7 @@ class LoginState extends State<LoginScreen> {
                         MaterialPageRoute(builder: (context) => const SignUp()),
                       );
                     },
-                  )
+                  ),
                 ],
                 mainAxisAlignment: MainAxisAlignment.center,
               ),
