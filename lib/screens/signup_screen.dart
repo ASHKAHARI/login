@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:login_app/screens/loginscreen.dart';
 import '../Back-End/login_service.dart';
 import '../Back-End/loginmodal.dart';
-import '../main.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
