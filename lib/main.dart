@@ -11,14 +11,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Friends',
-      theme: ThemeData(
-        primarySwatch: Colors.cyan,
+      // title: 'Login',
+      // theme: ThemeData(
+      //   primarySwatch: Colors.cyan,
+      // ),
+      home: Scaffold(
+        body: const SplashScreen(),
       ),
-      home: Scaffold(body: const SplashScreen(),),
       debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
