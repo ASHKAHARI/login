@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_app/screens/signUp_screen.dart';
 import '../Back-End/login_service.dart';
@@ -83,8 +84,8 @@ class LoginState extends State<LoginScreen> {
               Container(
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
-                  child: const Text(
-                    'Login',
+                  child:  Text(
+                    'Login'.tr().toString(),
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
@@ -94,9 +95,9 @@ class LoginState extends State<LoginScreen> {
                 padding: const EdgeInsets.all(10),
                 child: TextFormField(
                   controller: emailController,
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Enter your  email',
+                    labelText: 'Enter your  email'.tr().toString(),
                   ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -118,9 +119,9 @@ class LoginState extends State<LoginScreen> {
 
                     return null;
                   },
-                  decoration: const InputDecoration(
+                  decoration:  InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: 'Enter your password',
+                    labelText: 'Enter your password'.tr().toString(),
                   ),
                 ),
               ),
@@ -143,8 +144,8 @@ class LoginState extends State<LoginScreen> {
                                       LoggedDetailsScreen(data: value[0])));
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('Invalid Credentials')),
+                             SnackBar(
+                                content: Text('Invalid Credentials'.tr().toString())),
                           );
                         }
                         clear();
@@ -165,6 +166,36 @@ class LoginState extends State<LoginScreen> {
                         context,
                         MaterialPageRoute(builder: (context) => const SignUp()),
                       );
+                    },
+                  ),
+                ],
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Row(
+                children: <Widget>[
+                   Text('tamil'),
+                  TextButton(
+                    child: const Text(
+                      'tamil',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      context.locale = Locale('ta', 'IND');
+                    },
+                  ),
+                ],
+                mainAxisAlignment: MainAxisAlignment.center,
+              ),
+              Row(
+                children: <Widget>[
+                   Text('english'),
+                  TextButton(
+                    child: const Text(
+                      'english',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                    onPressed: () {
+                      context.locale = Locale('en', 'US');
                     },
                   ),
                 ],
