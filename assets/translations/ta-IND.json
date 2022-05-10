@@ -1,7 +1,22 @@
 {
-  
-  "Login" : "உள்நுழைய",
+  "Login": "உள்நுழைய",
   "Invalid Credentials": "தவறான ஆவண சான்றுகள்",
   "Enter your  email": "மின்னஞ்சலை பதிவுசெய்",
-  "Enter your password":"உங்கள் கடவுச்சொல்லை உள்ளிடவும்"
+  "Enter your password": "உங்கள் கடவுச்சொல்",
+  "Sign Up": "பதிவு",
+  "Name": "பெயர்",
+  "Already have an account?": "ஏற்கனவே கணக்கு உள்ளதா?",
+  "You Signed in Successfully": "நீங்கள் வெற்றிகரமாக உள்நுழைந்துள்ளீர்கள்",
+  "Password must be same as above": "கடவுச்சொல் மேலே உள்ளதைப் போலவே இருக்க வேண்டும்",
+  "password too short":"கடவுச்சொல் மிகவும் சிறியது",
+  "Password is Required":"கடவுச்சொல் தேவை",
+  "Confirm Password": "கடவுச்சொல்லை உறுதிப்படுத்தவும்",
+  "Confirm your password":"உங்கள் கடவுச்சொல்லை உறுதிப்படுத்தவும்",
+  "Password" : "கடவுச்சொல்",
+  "Email has already taken":"மின்னஞ்சல் ஏற்கனவே எடுக்கப்பட்டது",
+  "Check your email":"உங்கள் மின்னஞ்சல் பார்க்க",
+  "Email is Required":"மின்னஞ்சல் தேவை",
+  "Email":"மின்னஞ்சல்",
+  "Name is Required":"பெயர் தேவை"
+
 }

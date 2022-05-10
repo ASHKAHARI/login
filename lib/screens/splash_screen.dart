@@ -16,7 +16,7 @@ class _MyHomePageState extends State<SplashScreen> {
     Timer(
         const Duration(seconds: 3),
         () => Navigator.pushReplacement(context,
-            MaterialPageRoute(builder: (context) => const LoginApp())));
+            MaterialPageRoute(builder: (context) =>  LoginApp())));
   }
 
   @override

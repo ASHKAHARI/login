@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:login_app/screens/loginscreen.dart';
@@ -94,13 +95,13 @@ class SignUpState extends State<SignUp> {
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     controller: nameController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Name',
+                      labelText: 'Name'.tr().toString(),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Name is Required';
+                        return 'Name is Required'.tr().toString();
                       }
                       return null;
                     },
@@ -110,23 +111,23 @@ class SignUpState extends State<SignUp> {
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
                     controller: emailController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      labelText: 'Email',
+                      labelText: 'Email'.tr().toString(),
                     ),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Email is Required';
+                        return 'Email is Required'.tr().toString();
                       }
                       bool emailValid = RegExp(
                               r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
                           .hasMatch(value);
                       if (!emailValid) {
-                        return "Check your email";
+                        return "Check your email".tr().toString();
                       }
                       for (var element in email) {
                         if (element.email == emailController.text) {
-                          return 'Email has already taken';
+                          return 'Email has already taken'.tr().toString();
                         }
                       }
                       return null;
@@ -140,8 +141,8 @@ class SignUpState extends State<SignUp> {
                       controller: passwordController,
                       obscureText: !_passwordVisible,
                       decoration: InputDecoration(
-                        labelText: 'Password',
-                        hintText: 'Enter your password',
+                        labelText: 'Password'.tr().toString(),
+                        hintText: 'Enter your password'.tr().toString(),
                         border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -160,9 +161,9 @@ class SignUpState extends State<SignUp> {
                       validator: (value) {
                         confirmPass = value;
                         if (value == null || value.isEmpty) {
-                          return 'Password is Required ';
+                          return 'Password is Required'.tr().toString();
                         } else if (value.length < 6) {
-                          return 'password too short';
+                          return 'password too short'.tr().toString();
                         }
 
                         return null;
@@ -175,8 +176,8 @@ class SignUpState extends State<SignUp> {
                       controller: confirmPasswordController,
                       obscureText: !_confirmPasswordVisible,
                       decoration: InputDecoration(
-                        labelText: 'Confirm Password',
-                        hintText: 'Confirm your password',
+                        labelText: 'Confirm Password'.tr().toString(),
+                        hintText: 'Confirm your password'.tr().toString(),
                         border: const OutlineInputBorder(),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -195,12 +196,14 @@ class SignUpState extends State<SignUp> {
                       ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Password is Required ';
+                          return 'Password is Required'.tr().toString();
                         }
                         if (value.length < 6) {
-                          return 'password too short';
+                          return 'password too short'.tr().toString();
                         } else if (value != confirmPass) {
-                          return 'Password must be same as above';
+                          return 'Password must be same as above'
+                              .tr()
+                              .toString();
                         }
 
                         return null;
@@ -211,28 +214,30 @@ class SignUpState extends State<SignUp> {
                     height: 50,
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ElevatedButton(
-                      child: const Text('Sign Up'),
+                      child: Text('Sign Up'.tr().toString()),
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
                           saveDataToDb();
 
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text('You Signed in Successfully')),
+                            SnackBar(
+                                content: Text('You Signed in Successfully'
+                                    .tr()
+                                    .toString())),
                           );
                           Navigator.pop(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => const LoginApp()),
+                                builder: (context) =>  LoginApp()),
                           );
                         }
                       },
                     )),
                 Row(
                   children: <Widget>[
-                    const Text('Already have an account?'),
+                    Text('Already have an account?'.tr().toString()),
                     TextButton(
-                      child: const Text(
+                      child: Text(
                         'Login',
                         style: TextStyle(fontSize: 20),
                       ),
@@ -241,7 +246,7 @@ class SignUpState extends State<SignUp> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const LoginApp()),
+                              builder: (context) =>  LoginApp()),
                         );
                       },
                     )
