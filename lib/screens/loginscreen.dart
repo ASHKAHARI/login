@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:login_app/screens/signUp_screen.dart';
 import '../Back-End/login_service.dart';
 import 'Logged_details_screen.dart';
+import 'package:flutter_animated_button/flutter_animated_button.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 final darkNotifier = ValueNotifier<bool>(false);
 bool isDark = darkNotifier.value;
@@ -58,6 +60,11 @@ class LoginState extends State<LoginScreen> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
+  var submitTextStyle = GoogleFonts.nunito(
+      fontSize: 28,
+      letterSpacing: 5,
+      color: Colors.white,
+      fontWeight: FontWeight.w300);
 
   clear() {
     emailController.text = "";
@@ -122,17 +129,28 @@ class LoginState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              const SizedBox(height: 45),
-              Container(
-                  height: 50,
+              SizedBox(height: 25,),
+              Center(
+                child: Container(
+                  // height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
-                  child: ElevatedButton(
-                    child: const Text('Login'),
-                    onPressed: () async {
+                  child: AnimatedButton(
+                    height: 55,
+                    width: 150,
+                    text: 'Login',
+                    isReverse: true,
+                    selectedTextColor: Colors.black,
+                    transitionType: TransitionType.LEFT_TO_RIGHT,
+                    textStyle: submitTextStyle,
+                    backgroundColor: Colors.blue,
+                    borderColor: Colors.white,
+                    borderRadius: 50,
+                    borderWidth: 2,
+                    onPress: () async {
                       if (_formKey.currentState!.validate()) {
                         var value = await LoginService().checkValidUser(
                             emailController.text, passwordController.text);
-
+              
                         if (value.length > 0) {
                           Navigator.push(
                               context,
@@ -142,14 +160,16 @@ class LoginState extends State<LoginScreen> {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content: Text(
-                                    'Invalid Credentials'.tr().toString())),
+                                content:
+                                    Text('Invalid Credentials'.tr().toString())),
                           );
                         }
                         clear();
                       }
                     },
-                  )),
+                  ),
+                ),
+              ),
               Row(
                 children: <Widget>[
                   const Text('Does not have account?'),
