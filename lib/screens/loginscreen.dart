@@ -29,7 +29,65 @@ class LoginApp extends StatelessWidget {
               appBar: AppBar(
                 centerTitle: true,
                 title: const Text(title),
-                actions: <Widget>[],
+                actions: <Widget>[
+                  IconButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            shape: const RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(30.0),
+                                  topRight: Radius.circular(30.0)),
+                            ),
+                            backgroundColor: Colors.transparent,
+                            barrierColor: Colors.transparent,
+                            context: context,
+                            builder: (BuildContext bc) {
+                              return SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.19,
+                                child: Wrap(
+                                  children: <Widget>[
+                                    GestureDetector(
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0)),
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'assets/images/tamil.jpg'),
+                                          ),
+                                          title: Text('Tamil'),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        context.locale = Locale('ta', 'IND');
+                                      },
+                                    ),
+                                    GestureDetector(
+                                      child: Card(
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(30.0)),
+                                        child: ListTile(
+                                          leading: CircleAvatar(
+                                            backgroundImage: AssetImage(
+                                                'assets/images/english.png'),
+                                          ),
+                                          title: Text('English'),
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        context.locale = Locale('en', 'US');
+                                      },
+                                    ),
+                                  ],
+                                ),
+                              );
+                            });
+                      },
+                      icon: Icon(Icons.language))
+                ],
                 leading: TextButton(
                   onPressed: () {
                     isDark = !isDark;
@@ -129,7 +187,9 @@ class LoginState extends State<LoginScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 25,),
+              SizedBox(
+                height: 25,
+              ),
               Center(
                 child: Container(
                   // height: 50,
@@ -150,7 +210,7 @@ class LoginState extends State<LoginScreen> {
                       if (_formKey.currentState!.validate()) {
                         var value = await LoginService().checkValidUser(
                             emailController.text, passwordController.text);
-              
+
                         if (value.length > 0) {
                           Navigator.push(
                               context,
@@ -160,8 +220,8 @@ class LoginState extends State<LoginScreen> {
                         } else {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content:
-                                    Text('Invalid Credentials'.tr().toString())),
+                                content: Text(
+                                    'Invalid Credentials'.tr().toString())),
                           );
                         }
                         clear();
