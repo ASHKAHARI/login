@@ -62,6 +62,7 @@ class LoginApp extends StatelessWidget {
                                       ),
                                       onTap: () {
                                         context.locale = Locale('ta', 'IND');
+                                        
                                       },
                                     ),
                                     GestureDetector(
@@ -252,5 +253,56 @@ class LoginState extends State<LoginScreen> {
             ],
           )),
     );
+  }
+
+  chooseLanguage() {
+    return showModalBottomSheet(
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(30.0), topRight: Radius.circular(30.0)),
+        ),
+        backgroundColor: Colors.transparent,
+        barrierColor: Colors.transparent,
+        context: context,
+        builder: (BuildContext bc) {
+          return SizedBox(
+            height: MediaQuery.of(context).size.height * 0.19,
+            child: Wrap(
+              children: <Widget>[
+                GestureDetector(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: AssetImage('assets/images/tamil.jpg'),
+                      ),
+                      title: Text('Tamil'),
+                    ),
+                  ),
+                  onTap: () {
+                    context.locale = Locale('ta', 'IND');
+                  },
+                ),
+                GestureDetector(
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0)),
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage:
+                            AssetImage('assets/images/english.png'),
+                      ),
+                      title: Text('English'),
+                    ),
+                  ),
+                  onTap: () {
+                    context.locale = Locale('en', 'US');
+                  },
+                ),
+              ],
+            ),
+          );
+        });
   }
 }
