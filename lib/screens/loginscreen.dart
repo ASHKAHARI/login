@@ -79,7 +79,7 @@ class LoginApp extends StatelessWidget {
                                         ),
                                       ),
                                       onTap: () {
-                                        context.locale = Locale('en', 'US');
+                                        context.locale = Locale('en', 'IND');
                                       },
                                     ),
                                   ],
