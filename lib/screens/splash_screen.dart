@@ -14,7 +14,7 @@ class _MyHomePageState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-        const Duration(seconds: 3),
+        const Duration(seconds: 2),
         () => Navigator.pushReplacement(context,
             MaterialPageRoute(builder: (context) =>  LoginApp())));
   }
@@ -28,7 +28,7 @@ class _MyHomePageState extends State<SplashScreen> {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
-            children: friends('LOGIN', 40).map((v) {
+            children: login('LOGIN', 40).map((v) {
               return Center(
                 child: v,
               );
@@ -38,7 +38,7 @@ class _MyHomePageState extends State<SplashScreen> {
   }
 }
 
-List<Widget> friends(String str, double size) {
+List<Widget> login(String str, double size) {
   List<Widget> temp = [];
   for (int i = 0; i < str.length; i++) {
     var subText = str.substring(i, i + 1);

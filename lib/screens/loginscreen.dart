@@ -61,8 +61,8 @@ class LoginApp extends StatelessWidget {
                                         ),
                                       ),
                                       onTap: () {
-                                        context.locale = Locale('ta', 'IND');
-                                        
+                                        context.setLocale(Locale.fromSubtags(
+                                            languageCode: 'ta',countryCode: 'IND'));
                                       },
                                     ),
                                     GestureDetector(
@@ -79,7 +79,7 @@ class LoginApp extends StatelessWidget {
                                         ),
                                       ),
                                       onTap: () {
-                                        context.locale = Locale('en', 'IND');
+                                        context.setLocale(Locale.fromSubtags(languageCode: 'en',countryCode: 'IND'));
                                       },
                                     ),
                                   ],
