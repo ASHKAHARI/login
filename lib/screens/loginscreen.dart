@@ -57,7 +57,7 @@ class LoginApp extends StatelessWidget {
                                             backgroundImage: AssetImage(
                                                 'assets/images/tamil.jpg'),
                                           ),
-                                          title: Text('Tamil'),
+                                          title: Text('தமிழ்'),
                                         ),
                                       ),
                                       onTap: () {
