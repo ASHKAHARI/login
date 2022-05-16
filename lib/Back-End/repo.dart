@@ -1,6 +1,5 @@
 import 'package:sqflite/sqflite.dart';
 import 'db_connection.dart';
-import 'loginmodal.dart';
 
 class Repo {
   late DatabaseConnection _databaseConnection;

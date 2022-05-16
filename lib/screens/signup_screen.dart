@@ -72,25 +72,52 @@ class SignUpState extends State<SignUp> {
             child: ListView(
               children: <Widget>[
                 Center(
-                    child: imageFile == "" || imageFile == null
-                        ? GestureDetector(
-                            onTap: () {
-                              getFromGallery();
-                            },
-                            child: const CircleAvatar(
-                                radius: 80,
-                                backgroundImage:
-                                    AssetImage('assets/images/default.jpg')),
-                          )
-                        : GestureDetector(
-                            onTap: () {
-                              getFromGallery();
-                            },
-                            child: CircleAvatar(
-                                radius: 80,
-                                backgroundImage:
-                                    FileImage(File(imageFile.toString()))),
-                          )),
+                  child: Stack(
+                    children: <Widget>[
+                      imageFile == "" || imageFile == null
+                          ? GestureDetector(
+                              onTap: () {
+                                getFromGallery();
+                              },
+                              child: const CircleAvatar(
+                                  radius: 80,
+                                  backgroundImage:
+                                      AssetImage('assets/images/default.jpg')),
+                            )
+                          : GestureDetector(
+                              onTap: () {
+                                getFromGallery();
+                              },
+                              child: CircleAvatar(
+                                  radius: 80,
+                                  backgroundImage:
+                                      FileImage(File(imageFile.toString()))),
+                            ),
+                      Positioned(
+                        bottom: 15.0,
+                        right: 26.0,
+                        child: Align(
+                           alignment: Alignment.topLeft,
+                          child: Container(
+                            height: 20,
+                            width: 20,
+                            child: Icon(
+                              Icons.browse_gallery,
+                              color: Colors.white,
+                              size: 18,
+                            ),
+                            decoration: BoxDecoration(
+                              color: Colors.blue,
+                              shape: BoxShape.circle,
+                              
+                              
+                            ),
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
                 Container(
                   padding: const EdgeInsets.all(10),
                   child: TextFormField(
@@ -215,20 +242,21 @@ class SignUpState extends State<SignUp> {
                     padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
                     child: ElevatedButton(
                       child: Text('Sign Up'.tr().toString()),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_formKey.currentState!.validate()) {
                           saveDataToDb();
 
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
-                                content: Text('You Signed in Successfully'
+                                content: Text('You Signed up  Successfully'
                                     .tr()
                                     .toString())),
                           );
+                          await Future.delayed(
+                              const Duration(seconds: 4), () {});
                           Navigator.pop(
                             context,
-                            MaterialPageRoute(
-                                builder: (context) =>  LoginApp()),
+                            MaterialPageRoute(builder: (context) => LoginApp()),
                           );
                         }
                       },
@@ -242,11 +270,9 @@ class SignUpState extends State<SignUp> {
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
-                        Navigator.push(
+                        Navigator.pop(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) =>  LoginApp()),
+                          MaterialPageRoute(builder: (context) => LoginApp()),
                         );
                       },
                     )
