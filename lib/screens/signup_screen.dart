@@ -94,27 +94,13 @@ class SignUpState extends State<SignUp> {
                                       FileImage(File(imageFile.toString()))),
                             ),
                       Positioned(
-                        bottom: 15.0,
-                        right: 26.0,
-                        child: Align(
-                           alignment: Alignment.topLeft,
-                          child: Container(
-                            height: 20,
-                            width: 20,
-                            child: Icon(
-                              Icons.browse_gallery,
-                              color: Colors.white,
-                              size: 18,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.blue,
-                              shape: BoxShape.circle,
-                              
-                              
-                            ),
-                          ),
-                        ),
-                      )
+                          bottom: 15.0,
+                          right: 24.0,
+                          child: Icon(
+                            Icons.add_a_photo,
+                            size: 35,
+                            color: Color.fromARGB(167, 0, 0, 0),
+                          )),
                     ],
                   ),
                 ),
