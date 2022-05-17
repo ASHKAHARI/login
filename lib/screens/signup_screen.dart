@@ -45,12 +45,13 @@ class SignUpState extends State<SignUp> {
   }
 
   saveDataToDb() {
-    Login friend = Login();
-    friend.email = emailController.text;
-    friend.name = nameController.text;
-    friend.password = passwordController.text;
-    friend.confirmPassword = confirmPasswordController.text;
-    loginService.saveUser(friend);
+    Login login = Login();
+    login.email = emailController.text;
+    login.name = nameController.text;
+    login.password = passwordController.text;
+    login.confirmPassword = confirmPasswordController.text;
+    login.profilePhoto = imageFile;
+    loginService.saveUser(login);
     clear();
   }
 
@@ -73,7 +74,9 @@ class SignUpState extends State<SignUp> {
               children: <Widget>[
                 Center(
                   child: GestureDetector(
-                    onTap: () {getFromGallery();},
+                    onTap: () {
+                      getFromGallery();
+                    },
                     child: Stack(
                       children: <Widget>[
                         imageFile == "" || imageFile == null
@@ -83,8 +86,8 @@ class SignUpState extends State<SignUp> {
                                 },
                                 child: const CircleAvatar(
                                     radius: 80,
-                                    backgroundImage:
-                                        AssetImage('assets/images/default.jpg')),
+                                    backgroundImage: AssetImage(
+                                        'assets/images/default.jpg')),
                               )
                             : GestureDetector(
                                 onTap: () {
