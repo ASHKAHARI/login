@@ -72,36 +72,39 @@ class SignUpState extends State<SignUp> {
             child: ListView(
               children: <Widget>[
                 Center(
-                  child: Stack(
-                    children: <Widget>[
-                      imageFile == "" || imageFile == null
-                          ? GestureDetector(
-                              onTap: () {
-                                getFromGallery();
-                              },
-                              child: const CircleAvatar(
-                                  radius: 80,
-                                  backgroundImage:
-                                      AssetImage('assets/images/default.jpg')),
-                            )
-                          : GestureDetector(
-                              onTap: () {
-                                getFromGallery();
-                              },
-                              child: CircleAvatar(
-                                  radius: 80,
-                                  backgroundImage:
-                                      FileImage(File(imageFile.toString()))),
-                            ),
-                      Positioned(
-                          bottom: 15.0,
-                          right: 24.0,
-                          child: Icon(
-                            Icons.add_a_photo,
-                            size: 35,
-                            color: Color.fromARGB(167, 0, 0, 0),
-                          )),
-                    ],
+                  child: GestureDetector(
+                    onTap: () {getFromGallery();},
+                    child: Stack(
+                      children: <Widget>[
+                        imageFile == "" || imageFile == null
+                            ? GestureDetector(
+                                onTap: () {
+                                  getFromGallery();
+                                },
+                                child: const CircleAvatar(
+                                    radius: 80,
+                                    backgroundImage:
+                                        AssetImage('assets/images/default.jpg')),
+                              )
+                            : GestureDetector(
+                                onTap: () {
+                                  getFromGallery();
+                                },
+                                child: CircleAvatar(
+                                    radius: 80,
+                                    backgroundImage:
+                                        FileImage(File(imageFile.toString()))),
+                              ),
+                        Positioned(
+                            bottom: 15.0,
+                            right: 24.0,
+                            child: Icon(
+                              Icons.add_a_photo,
+                              size: 35,
+                              color: Color.fromARGB(167, 0, 0, 0),
+                            )),
+                      ],
+                    ),
                   ),
                 ),
                 Container(
