@@ -187,7 +187,6 @@ class LoginState extends State<LoginScreen> {
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        if (_formKey.currentState!.validate()) {}
                         Navigator.push(
                           context,
                           MaterialPageRoute(
